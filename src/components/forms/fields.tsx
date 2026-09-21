@@ -37,10 +37,10 @@ const underline = "pointer-events-none absolute bottom-0 left-0 h-px w-full orig
 
 export function TextField({ label, ...props }: { label: string } & InputHTMLAttributes<HTMLInputElement>) {
   return (
-    <label className="group relative block">
+    <label className={`group relative block ${props.readOnly ? "opacity-50 cursor-default" : ""}`}>
       <Label required={props.required}>{label}</Label>
       <input {...props} className="field" />
-      <span className={underline} />
+      {!props.readOnly && <span className={underline} />}
     </label>
   );
 }

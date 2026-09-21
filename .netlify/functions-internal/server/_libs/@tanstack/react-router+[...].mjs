@@ -1,5 +1,5 @@
 import { n as __require, r as __toESM, t as __commonJSMin } from "../../_runtime.mjs";
-import { i as require_react, r as require_jsx_runtime } from "../react+tanstack__react-query.mjs";
+import { i as require_jsx_runtime, r as require_react } from "../react+tanstack__react-query.mjs";
 import { r as parseHref } from "../tanstack__history.mjs";
 import { PassThrough, Readable } from "node:stream";
 import { ReadableStream as ReadableStream$1 } from "node:stream/web";
@@ -3576,11 +3576,11 @@ var BaseRootRoute = class extends BaseRoute {
 };
 //#endregion
 //#region node_modules/@tanstack/router-core/dist/esm/ssr/constants.js
+var import_jsx_runtime = require_jsx_runtime();
 var GLOBAL_TSR = "$_TSR";
 var TSR_SCRIPT_BARRIER_ID = "$tsr-stream-barrier";
 //#endregion
 //#region node_modules/@tanstack/react-router/dist/esm/CatchBoundary.js
-var import_jsx_runtime = require_jsx_runtime();
 function CatchBoundary(props) {
 	const errorComponent = props.errorComponent ?? ErrorComponent;
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CatchBoundaryImpl, {
@@ -5060,6 +5060,30 @@ function MatchesInner() {
 			children: matchComponent
 		})
 	});
+}
+/**
+* Create a matcher function for testing locations against route definitions.
+*
+* The returned function accepts standard navigation options (`to`, `params`,
+* `search`, etc.) and returns either `false` (no match) or the matched params
+* object when the route matches the current or pending location.
+*
+* Useful for conditional rendering and active UI states.
+*
+* @returns A `matchRoute(options)` function that returns `false` or params.
+* @link https://tanstack.com/router/latest/docs/framework/react/api/router/useMatchRouteHook
+*/
+function useMatchRoute() {
+	const router = useRouter();
+	return import_react.useCallback((opts) => {
+		const { pending, caseSensitive, fuzzy, includeSearch, ...rest } = opts;
+		return router.matchRoute(rest, {
+			pending,
+			caseSensitive,
+			fuzzy,
+			includeSearch
+		});
+	}, [router]);
 }
 //#endregion
 //#region node_modules/@tanstack/react-router/dist/esm/routerStores.js
@@ -14493,4 +14517,4 @@ var renderRouterToStream = async ({ request, router, responseHeaders, children }
 	throw new Error("No renderToReadableStream or renderToPipeableStream found in react-dom/server. Ensure you are using a version of react-dom that supports streaming.");
 };
 //#endregion
-export { isNotFound as A, getStylesheetHref as C, isRedirect as D, executeRewriteInput as E, invariant as M, decodePath as N, isResolvedRedirect as O, getScriptPreloadAttrs as S, resolveManifestCssLink as T, useRouter as _, replaceSsrResponse as a, createInlineCssPlaceholderAsset as b, HeadContent as c, createRouter as d, Outlet as f, Link as g, createRootRouteWithContext as h, normalizeSsrResponse as i, createLRUCache as j, rootRouteId as k, useRouterState as l, createFileRoute as m, defineHandlerCallback as n, stripSsrResponseBody as o, lazyRouteComponent as p, isSsrResponse as r, Scripts as s, renderRouterToStream as t, RouterProvider as u, GLOBAL_TSR as v, resolveManifestAssetLink as w, createInlineCssStyleAsset as x, TSR_SCRIPT_BARRIER_ID as y };
+export { isResolvedRedirect as A, createInlineCssStyleAsset as C, resolveManifestCssLink as D, resolveManifestAssetLink as E, invariant as F, decodePath as I, rootRouteId as M, isNotFound as N, executeRewriteInput as O, createLRUCache as P, createInlineCssPlaceholderAsset as S, getStylesheetHref as T, Link as _, replaceSsrResponse as a, GLOBAL_TSR as b, HeadContent as c, createRouter as d, useMatchRoute as f, createRootRouteWithContext as g, createFileRoute as h, normalizeSsrResponse as i, redirect as j, isRedirect as k, useRouterState as l, lazyRouteComponent as m, defineHandlerCallback as n, stripSsrResponseBody as o, Outlet as p, isSsrResponse as r, Scripts as s, renderRouterToStream as t, RouterProvider as u, useNavigate as v, getScriptPreloadAttrs as w, TSR_SCRIPT_BARRIER_ID as x, useRouter as y };

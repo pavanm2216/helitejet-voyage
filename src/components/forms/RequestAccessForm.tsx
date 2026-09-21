@@ -4,6 +4,7 @@ import { GlassPanel } from "@/components/lux/GlassPanel";
 import { SectionReveal } from "@/components/scene/SectionReveal";
 import { ease, useCinematicMotion } from "@/components/scene/motion";
 import { interestOptions, travelProfiles } from "@/content/site";
+import { useAuth } from "@/lib/auth";
 import { friendlyError, Received, SelectField, SubmitLine, TextArea, TextField, useEnquiry } from "./fields";
 
 const PARTICLES = Array.from({ length: 18 }, (_, i) => ({
@@ -21,9 +22,19 @@ const PARTICLES = Array.from({ length: 18 }, (_, i) => ({
  */
 export function RequestAccessForm() {
   const { reduced } = useCinematicMotion();
+  const { profile } = useAuth();
   const section = useRef<HTMLElement>(null);
   const [focused, setFocused] = useState(false);
-  const [v, setV] = useState({ full_name: "", email: "", phone: "", location: "", interest: "", travel_profile: "", message: "" });
+  const [v, setV] = useState({
+    full_name: profile?.full_name ?? "",
+    email: profile?.email ?? "",
+    phone: profile?.mobile ?? "",
+    location: profile?.country ?? "",
+    interest: "",
+    travel_profile: "",
+    message: "",
+  });
+  const isLoggedIn = !!profile;
   const mutation = useEnquiry("access");
 
   // Mouse perspective
@@ -112,10 +123,13 @@ export function RequestAccessForm() {
                   style={{ transform: reduced ? undefined : "translateZ(30px)" }}
                 >
                   <div className="grid gap-9 md:grid-cols-2 md:gap-x-10">
-                    <TextField label="Full name" name="full_name" autoComplete="name" required value={v.full_name} onChange={set("full_name")} />
-                    <TextField label="Email" name="email" type="email" autoComplete="email" required value={v.email} onChange={set("email")} />
-                    <TextField label="Phone" name="phone" type="tel" autoComplete="tel" value={v.phone} onChange={set("phone")} />
-                    <TextField label="Location" name="location" autoComplete="address-level2" placeholder="City, country" value={v.location} onChange={set("location")} />
+                    {isLoggedIn && (
+                      <p className="whisper md:col-span-2 text-ivory/35 !normal-case !tracking-[0.12em]">Your details are pre-filled from your profile.</p>
+                    )}
+                    <TextField label="Full name" name="full_name" autoComplete="name" required value={v.full_name} onChange={set("full_name")} readOnly={isLoggedIn} />
+                    <TextField label="Email" name="email" type="email" autoComplete="email" required value={v.email} onChange={set("email")} readOnly={isLoggedIn} />
+                    <TextField label="Phone" name="phone" type="tel" autoComplete="tel" value={v.phone} onChange={set("phone")} readOnly={isLoggedIn} />
+                    <TextField label="Location" name="location" autoComplete="address-level2" placeholder="City, country" value={v.location} onChange={set("location")} readOnly={isLoggedIn} />
                     <SelectField label="Interest" name="interest" options={interestOptions} value={v.interest} onChange={set("interest")} />
                     <SelectField label="Travel profile" name="travel_profile" options={travelProfiles} value={v.travel_profile} onChange={set("travel_profile")} />
                     <div className="md:col-span-2">

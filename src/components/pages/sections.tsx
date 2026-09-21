@@ -323,9 +323,28 @@ export function MembershipSections() {
   );
 }
 
+const CLUB_KEYS = ["HORIZON", "RESERVE", "HOUSE"] as const;
+type ClubKey = typeof CLUB_KEYS[number];
+
+const CLUB_PRICES: Record<ClubKey, string> = {
+  HORIZON: "£12,000 / year",
+  RESERVE: "£28,000 / year",
+  HOUSE:   "£65,000 / year",
+};
+
 /* ---------- Subscriptions ---------- */
 
-export function SubscriptionsSections() {
+export function SubscriptionsSections({
+  activeClub,
+  activeStatus,
+  onSelect,
+  selecting,
+}: {
+  activeClub?: ClubKey | null;
+  activeStatus?: "PENDING" | "ACTIVE" | "CANCELLED" | null;
+  onSelect?: (key: ClubKey) => void;
+  selecting?: ClubKey | null;
+}) {
   const c = subscriptionContent;
   return (
     <>
@@ -335,29 +354,61 @@ export function SubscriptionsSections() {
 
       <section className="px-7 py-[10vh] md:px-[7vw]">
         <div className="grid gap-8 md:grid-cols-3 md:gap-6">
-          {c.clubs.map((club, i) => (
-            <SectionReveal key={club.name} delay={i * 0.12} className="group border border-ivory/10 bg-[oklch(0.12_0.008_275/0.8)] p-6 md:p-8">
-              <span className="whisper text-champagne/80">{club.tag}</span>
-              <h3 className="mt-8 font-serif text-4xl font-light leading-tight text-ivory md:text-[2.5rem]">{club.name}</h3>
-              <p className="mt-6 font-serif text-lg font-light leading-relaxed text-ivory/70">{club.blurb}</p>
-              <ul className="mt-8 space-y-3">
-                {club.perks.map((perk) => (
-                  <li key={perk} className="flex items-start gap-3 text-ivory/65">
-                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-gold" aria-hidden="true" />
-                    <span className="font-serif text-lg font-light leading-relaxed">{perk}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-10 border-t border-ivory/10 pt-6">
-                <Link to="/request-access" className="group inline-flex items-center gap-4 whisper text-champagne transition-colors hover:text-ivory">
-                  <span>Apply</span>
-                  <span className="relative block h-px w-10 overflow-hidden bg-gold/50">
-                    <span className="absolute inset-0 origin-left scale-x-0 bg-ivory transition-transform duration-700 ease-out group-hover:scale-x-100" />
-                  </span>
-                </Link>
-              </div>
-            </SectionReveal>
-          ))}
+          {c.clubs.map((club, i) => {
+            const key = CLUB_KEYS[i];
+            const isActive = activeClub === key && activeStatus === "ACTIVE";
+            const isPending = activeClub === key && activeStatus === "PENDING";
+            const isSelecting = selecting === key;
+            const isDisabled = isActive || isPending || isSelecting;
+            return (
+              <SectionReveal key={club.name} delay={i * 0.12} className={`group border bg-[oklch(0.12_0.008_275/0.8)] p-6 md:p-8 transition-colors duration-500 ${
+                isActive ? "border-gold/60" : isPending ? "border-champagne/30" : "border-ivory/10"
+              }`}>
+                <div className="flex items-start justify-between gap-2">
+                  <span className="whisper text-champagne/80">{club.tag}</span>
+                  {isActive && <span className="whisper text-gold">Active</span>}
+                  {isPending && <span className="whisper text-champagne/60">Pending</span>}
+                </div>
+                <h3 className="mt-8 font-serif text-4xl font-light leading-tight text-ivory md:text-[2.5rem]">{club.name}</h3>
+                <p className="mt-3 font-serif text-xl font-light text-champagne/70">{CLUB_PRICES[key]}</p>
+                <p className="mt-4 font-serif text-lg font-light leading-relaxed text-ivory/70">{club.blurb}</p>
+                <ul className="mt-8 space-y-3">
+                  {club.perks.map((perk) => (
+                    <li key={perk} className="flex items-start gap-3 text-ivory/65">
+                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-gold" aria-hidden="true" />
+                      <span className="font-serif text-lg font-light leading-relaxed">{perk}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-10 border-t border-ivory/10 pt-6">
+                  {onSelect ? (
+                    <button
+                      type="button"
+                      disabled={isDisabled}
+                      onClick={() => onSelect(key)}
+                      className="group inline-flex items-center gap-4 whisper text-champagne transition-colors hover:text-ivory disabled:opacity-40 disabled:cursor-default"
+                    >
+                      <span>
+                        {isSelecting ? "Opening…" : isActive ? "Active" : isPending ? "Awaiting confirmation" : "Request this club"}
+                      </span>
+                      {!isDisabled && (
+                        <span className="relative block h-px w-10 overflow-hidden bg-gold/50">
+                          <span className="absolute inset-0 origin-left scale-x-0 bg-ivory transition-transform duration-700 ease-out group-hover:scale-x-100" />
+                        </span>
+                      )}
+                    </button>
+                  ) : (
+                    <Link to="/customer/subscription" className="group inline-flex items-center gap-4 whisper text-champagne transition-colors hover:text-ivory">
+                      <span>Request this club</span>
+                      <span className="relative block h-px w-10 overflow-hidden bg-gold/50">
+                        <span className="absolute inset-0 origin-left scale-x-0 bg-ivory transition-transform duration-700 ease-out group-hover:scale-x-100" />
+                      </span>
+                    </Link>
+                  )}
+                </div>
+              </SectionReveal>
+            );
+          })}
         </div>
       </section>
 

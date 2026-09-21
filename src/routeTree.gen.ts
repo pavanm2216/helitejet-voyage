@@ -15,13 +15,32 @@ import { Route as AviationRouteImport } from './routes/aviation'
 import { Route as ConciergeRouteImport } from './routes/concierge'
 import { Route as DestinationsRouteImport } from './routes/destinations'
 import { Route as ExperiencesRouteImport } from './routes/experiences'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as MembershipRouteImport } from './routes/membership'
 import { Route as MobilityRouteImport } from './routes/mobility'
 import { Route as PrivateRouteImport } from './routes/private'
+import { Route as RegisterRouteImport } from './routes/register'
 import { Route as RequestAccessRouteImport } from './routes/request-access'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as ResidencesRouteImport } from './routes/residences'
 import { Route as SubscriptionsRouteImport } from './routes/subscriptions'
 import { Route as YachtsRouteImport } from './routes/yachts'
+import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
+import { Route as AdminRequestsRouteImport } from './routes/admin.requests'
+import { Route as CustomerBookingsRouteImport } from './routes/customer.bookings'
+import { Route as CustomerDashboardRouteImport } from './routes/customer.dashboard'
+import { Route as CustomerDocumentsRouteImport } from './routes/customer.documents'
+import { Route as CustomerNotificationsRouteImport } from './routes/customer.notifications'
+import { Route as CustomerProfileRouteImport } from './routes/customer.profile'
+import { Route as CustomerQuotesRouteImport } from './routes/customer.quotes'
+import { Route as CustomerRequestsRouteImport } from './routes/customer.requests'
+import { Route as CustomerSubscriptionRouteImport } from './routes/customer.subscription'
+import { Route as CustomerSupportRouteImport } from './routes/customer.support'
+import { Route as SalesDashboardRouteImport } from './routes/sales.dashboard'
+import { Route as SalesRequestsRouteImport } from './routes/sales.requests'
+import { Route as CustomerRequestsIdRouteImport } from './routes/customer.requests.$id'
+import { Route as CustomerRequestsNewRouteImport } from './routes/customer.requests.new'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -53,6 +72,16 @@ const ExperiencesRoute = ExperiencesRouteImport.update({
   path: '/experiences',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MembershipRoute = MembershipRouteImport.update({
   id: '/membership',
   path: '/membership',
@@ -68,9 +97,19 @@ const PrivateRoute = PrivateRouteImport.update({
   path: '/private',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RequestAccessRoute = RequestAccessRouteImport.update({
   id: '/request-access',
   path: '/request-access',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResidencesRoute = ResidencesRouteImport.update({
@@ -88,6 +127,81 @@ const YachtsRoute = YachtsRouteImport.update({
   path: '/yachts',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminDashboardRoute = AdminDashboardRouteImport.update({
+  id: '/admin/dashboard',
+  path: '/admin/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRequestsRoute = AdminRequestsRouteImport.update({
+  id: '/admin/requests',
+  path: '/admin/requests',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerBookingsRoute = CustomerBookingsRouteImport.update({
+  id: '/customer/bookings',
+  path: '/customer/bookings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerDashboardRoute = CustomerDashboardRouteImport.update({
+  id: '/customer/dashboard',
+  path: '/customer/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerDocumentsRoute = CustomerDocumentsRouteImport.update({
+  id: '/customer/documents',
+  path: '/customer/documents',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerNotificationsRoute = CustomerNotificationsRouteImport.update({
+  id: '/customer/notifications',
+  path: '/customer/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerProfileRoute = CustomerProfileRouteImport.update({
+  id: '/customer/profile',
+  path: '/customer/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerQuotesRoute = CustomerQuotesRouteImport.update({
+  id: '/customer/quotes',
+  path: '/customer/quotes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerRequestsRoute = CustomerRequestsRouteImport.update({
+  id: '/customer/requests',
+  path: '/customer/requests',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerSubscriptionRoute = CustomerSubscriptionRouteImport.update({
+  id: '/customer/subscription',
+  path: '/customer/subscription',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerSupportRoute = CustomerSupportRouteImport.update({
+  id: '/customer/support',
+  path: '/customer/support',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SalesDashboardRoute = SalesDashboardRouteImport.update({
+  id: '/sales/dashboard',
+  path: '/sales/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SalesRequestsRoute = SalesRequestsRouteImport.update({
+  id: '/sales/requests',
+  path: '/sales/requests',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerRequestsIdRoute = CustomerRequestsIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => CustomerRequestsRoute,
+} as any)
+const CustomerRequestsNewRoute = CustomerRequestsNewRouteImport.update({
+  id: '/new',
+  path: '/new',
+  getParentRoute: () => CustomerRequestsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -96,13 +210,32 @@ export interface FileRoutesByFullPath {
   '/concierge': typeof ConciergeRoute
   '/destinations': typeof DestinationsRoute
   '/experiences': typeof ExperiencesRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
   '/membership': typeof MembershipRoute
   '/mobility': typeof MobilityRoute
   '/private': typeof PrivateRoute
+  '/register': typeof RegisterRoute
   '/request-access': typeof RequestAccessRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/residences': typeof ResidencesRoute
   '/subscriptions': typeof SubscriptionsRoute
   '/yachts': typeof YachtsRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/requests': typeof AdminRequestsRoute
+  '/customer/bookings': typeof CustomerBookingsRoute
+  '/customer/dashboard': typeof CustomerDashboardRoute
+  '/customer/documents': typeof CustomerDocumentsRoute
+  '/customer/notifications': typeof CustomerNotificationsRoute
+  '/customer/profile': typeof CustomerProfileRoute
+  '/customer/quotes': typeof CustomerQuotesRoute
+  '/customer/requests': typeof CustomerRequestsRouteWithChildren
+  '/customer/subscription': typeof CustomerSubscriptionRoute
+  '/customer/support': typeof CustomerSupportRoute
+  '/sales/dashboard': typeof SalesDashboardRoute
+  '/sales/requests': typeof SalesRequestsRoute
+  '/customer/requests/$id': typeof CustomerRequestsIdRoute
+  '/customer/requests/new': typeof CustomerRequestsNewRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -111,13 +244,32 @@ export interface FileRoutesByTo {
   '/concierge': typeof ConciergeRoute
   '/destinations': typeof DestinationsRoute
   '/experiences': typeof ExperiencesRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
   '/membership': typeof MembershipRoute
   '/mobility': typeof MobilityRoute
   '/private': typeof PrivateRoute
+  '/register': typeof RegisterRoute
   '/request-access': typeof RequestAccessRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/residences': typeof ResidencesRoute
   '/subscriptions': typeof SubscriptionsRoute
   '/yachts': typeof YachtsRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/requests': typeof AdminRequestsRoute
+  '/customer/bookings': typeof CustomerBookingsRoute
+  '/customer/dashboard': typeof CustomerDashboardRoute
+  '/customer/documents': typeof CustomerDocumentsRoute
+  '/customer/notifications': typeof CustomerNotificationsRoute
+  '/customer/profile': typeof CustomerProfileRoute
+  '/customer/quotes': typeof CustomerQuotesRoute
+  '/customer/requests': typeof CustomerRequestsRouteWithChildren
+  '/customer/subscription': typeof CustomerSubscriptionRoute
+  '/customer/support': typeof CustomerSupportRoute
+  '/sales/dashboard': typeof SalesDashboardRoute
+  '/sales/requests': typeof SalesRequestsRoute
+  '/customer/requests/$id': typeof CustomerRequestsIdRoute
+  '/customer/requests/new': typeof CustomerRequestsNewRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -127,13 +279,32 @@ export interface FileRoutesById {
   '/concierge': typeof ConciergeRoute
   '/destinations': typeof DestinationsRoute
   '/experiences': typeof ExperiencesRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
   '/membership': typeof MembershipRoute
   '/mobility': typeof MobilityRoute
   '/private': typeof PrivateRoute
+  '/register': typeof RegisterRoute
   '/request-access': typeof RequestAccessRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/residences': typeof ResidencesRoute
   '/subscriptions': typeof SubscriptionsRoute
   '/yachts': typeof YachtsRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/requests': typeof AdminRequestsRoute
+  '/customer/bookings': typeof CustomerBookingsRoute
+  '/customer/dashboard': typeof CustomerDashboardRoute
+  '/customer/documents': typeof CustomerDocumentsRoute
+  '/customer/notifications': typeof CustomerNotificationsRoute
+  '/customer/profile': typeof CustomerProfileRoute
+  '/customer/quotes': typeof CustomerQuotesRoute
+  '/customer/requests': typeof CustomerRequestsRouteWithChildren
+  '/customer/subscription': typeof CustomerSubscriptionRoute
+  '/customer/support': typeof CustomerSupportRoute
+  '/sales/dashboard': typeof SalesDashboardRoute
+  '/sales/requests': typeof SalesRequestsRoute
+  '/customer/requests/$id': typeof CustomerRequestsIdRoute
+  '/customer/requests/new': typeof CustomerRequestsNewRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -144,13 +315,32 @@ export interface FileRouteTypes {
     | '/concierge'
     | '/destinations'
     | '/experiences'
+    | '/forgot-password'
+    | '/login'
     | '/membership'
     | '/mobility'
     | '/private'
+    | '/register'
     | '/request-access'
+    | '/reset-password'
     | '/residences'
     | '/subscriptions'
     | '/yachts'
+    | '/admin/dashboard'
+    | '/admin/requests'
+    | '/customer/bookings'
+    | '/customer/dashboard'
+    | '/customer/documents'
+    | '/customer/notifications'
+    | '/customer/profile'
+    | '/customer/quotes'
+    | '/customer/requests'
+    | '/customer/subscription'
+    | '/customer/support'
+    | '/sales/dashboard'
+    | '/sales/requests'
+    | '/customer/requests/$id'
+    | '/customer/requests/new'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -159,13 +349,32 @@ export interface FileRouteTypes {
     | '/concierge'
     | '/destinations'
     | '/experiences'
+    | '/forgot-password'
+    | '/login'
     | '/membership'
     | '/mobility'
     | '/private'
+    | '/register'
     | '/request-access'
+    | '/reset-password'
     | '/residences'
     | '/subscriptions'
     | '/yachts'
+    | '/admin/dashboard'
+    | '/admin/requests'
+    | '/customer/bookings'
+    | '/customer/dashboard'
+    | '/customer/documents'
+    | '/customer/notifications'
+    | '/customer/profile'
+    | '/customer/quotes'
+    | '/customer/requests'
+    | '/customer/subscription'
+    | '/customer/support'
+    | '/sales/dashboard'
+    | '/sales/requests'
+    | '/customer/requests/$id'
+    | '/customer/requests/new'
   id:
     | '__root__'
     | '/'
@@ -174,13 +383,32 @@ export interface FileRouteTypes {
     | '/concierge'
     | '/destinations'
     | '/experiences'
+    | '/forgot-password'
+    | '/login'
     | '/membership'
     | '/mobility'
     | '/private'
+    | '/register'
     | '/request-access'
+    | '/reset-password'
     | '/residences'
     | '/subscriptions'
     | '/yachts'
+    | '/admin/dashboard'
+    | '/admin/requests'
+    | '/customer/bookings'
+    | '/customer/dashboard'
+    | '/customer/documents'
+    | '/customer/notifications'
+    | '/customer/profile'
+    | '/customer/quotes'
+    | '/customer/requests'
+    | '/customer/subscription'
+    | '/customer/support'
+    | '/sales/dashboard'
+    | '/sales/requests'
+    | '/customer/requests/$id'
+    | '/customer/requests/new'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -190,13 +418,30 @@ export interface RootRouteChildren {
   ConciergeRoute: typeof ConciergeRoute
   DestinationsRoute: typeof DestinationsRoute
   ExperiencesRoute: typeof ExperiencesRoute
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
+  LoginRoute: typeof LoginRoute
   MembershipRoute: typeof MembershipRoute
   MobilityRoute: typeof MobilityRoute
   PrivateRoute: typeof PrivateRoute
+  RegisterRoute: typeof RegisterRoute
   RequestAccessRoute: typeof RequestAccessRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   ResidencesRoute: typeof ResidencesRoute
   SubscriptionsRoute: typeof SubscriptionsRoute
   YachtsRoute: typeof YachtsRoute
+  AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminRequestsRoute: typeof AdminRequestsRoute
+  CustomerBookingsRoute: typeof CustomerBookingsRoute
+  CustomerDashboardRoute: typeof CustomerDashboardRoute
+  CustomerDocumentsRoute: typeof CustomerDocumentsRoute
+  CustomerNotificationsRoute: typeof CustomerNotificationsRoute
+  CustomerProfileRoute: typeof CustomerProfileRoute
+  CustomerQuotesRoute: typeof CustomerQuotesRoute
+  CustomerRequestsRoute: typeof CustomerRequestsRouteWithChildren
+  CustomerSubscriptionRoute: typeof CustomerSubscriptionRoute
+  CustomerSupportRoute: typeof CustomerSupportRoute
+  SalesDashboardRoute: typeof SalesDashboardRoute
+  SalesRequestsRoute: typeof SalesRequestsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -243,6 +488,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExperiencesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/membership': {
       id: '/membership'
       path: '/membership'
@@ -264,11 +523,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivateRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/request-access': {
       id: '/request-access'
       path: '/request-access'
       fullPath: '/request-access'
       preLoaderRoute: typeof RequestAccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/residences': {
@@ -292,8 +565,126 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof YachtsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/dashboard': {
+      id: '/admin/dashboard'
+      path: '/admin/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AdminDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/requests': {
+      id: '/admin/requests'
+      path: '/admin/requests'
+      fullPath: '/admin/requests'
+      preLoaderRoute: typeof AdminRequestsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/bookings': {
+      id: '/customer/bookings'
+      path: '/customer/bookings'
+      fullPath: '/customer/bookings'
+      preLoaderRoute: typeof CustomerBookingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/dashboard': {
+      id: '/customer/dashboard'
+      path: '/customer/dashboard'
+      fullPath: '/customer/dashboard'
+      preLoaderRoute: typeof CustomerDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/documents': {
+      id: '/customer/documents'
+      path: '/customer/documents'
+      fullPath: '/customer/documents'
+      preLoaderRoute: typeof CustomerDocumentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/notifications': {
+      id: '/customer/notifications'
+      path: '/customer/notifications'
+      fullPath: '/customer/notifications'
+      preLoaderRoute: typeof CustomerNotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/profile': {
+      id: '/customer/profile'
+      path: '/customer/profile'
+      fullPath: '/customer/profile'
+      preLoaderRoute: typeof CustomerProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/quotes': {
+      id: '/customer/quotes'
+      path: '/customer/quotes'
+      fullPath: '/customer/quotes'
+      preLoaderRoute: typeof CustomerQuotesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/requests': {
+      id: '/customer/requests'
+      path: '/customer/requests'
+      fullPath: '/customer/requests'
+      preLoaderRoute: typeof CustomerRequestsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/subscription': {
+      id: '/customer/subscription'
+      path: '/customer/subscription'
+      fullPath: '/customer/subscription'
+      preLoaderRoute: typeof CustomerSubscriptionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/support': {
+      id: '/customer/support'
+      path: '/customer/support'
+      fullPath: '/customer/support'
+      preLoaderRoute: typeof CustomerSupportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sales/dashboard': {
+      id: '/sales/dashboard'
+      path: '/sales/dashboard'
+      fullPath: '/sales/dashboard'
+      preLoaderRoute: typeof SalesDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sales/requests': {
+      id: '/sales/requests'
+      path: '/sales/requests'
+      fullPath: '/sales/requests'
+      preLoaderRoute: typeof SalesRequestsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/requests/$id': {
+      id: '/customer/requests/$id'
+      path: '/$id'
+      fullPath: '/customer/requests/$id'
+      preLoaderRoute: typeof CustomerRequestsIdRouteImport
+      parentRoute: typeof CustomerRequestsRoute
+    }
+    '/customer/requests/new': {
+      id: '/customer/requests/new'
+      path: '/new'
+      fullPath: '/customer/requests/new'
+      preLoaderRoute: typeof CustomerRequestsNewRouteImport
+      parentRoute: typeof CustomerRequestsRoute
+    }
   }
 }
+
+interface CustomerRequestsRouteChildren {
+  CustomerRequestsIdRoute: typeof CustomerRequestsIdRoute
+  CustomerRequestsNewRoute: typeof CustomerRequestsNewRoute
+}
+
+const CustomerRequestsRouteChildren: CustomerRequestsRouteChildren = {
+  CustomerRequestsIdRoute: CustomerRequestsIdRoute,
+  CustomerRequestsNewRoute: CustomerRequestsNewRoute,
+}
+
+const CustomerRequestsRouteWithChildren =
+  CustomerRequestsRoute._addFileChildren(CustomerRequestsRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -302,13 +693,30 @@ const rootRouteChildren: RootRouteChildren = {
   ConciergeRoute: ConciergeRoute,
   DestinationsRoute: DestinationsRoute,
   ExperiencesRoute: ExperiencesRoute,
+  ForgotPasswordRoute: ForgotPasswordRoute,
+  LoginRoute: LoginRoute,
   MembershipRoute: MembershipRoute,
   MobilityRoute: MobilityRoute,
   PrivateRoute: PrivateRoute,
+  RegisterRoute: RegisterRoute,
   RequestAccessRoute: RequestAccessRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   ResidencesRoute: ResidencesRoute,
   SubscriptionsRoute: SubscriptionsRoute,
   YachtsRoute: YachtsRoute,
+  AdminDashboardRoute: AdminDashboardRoute,
+  AdminRequestsRoute: AdminRequestsRoute,
+  CustomerBookingsRoute: CustomerBookingsRoute,
+  CustomerDashboardRoute: CustomerDashboardRoute,
+  CustomerDocumentsRoute: CustomerDocumentsRoute,
+  CustomerNotificationsRoute: CustomerNotificationsRoute,
+  CustomerProfileRoute: CustomerProfileRoute,
+  CustomerQuotesRoute: CustomerQuotesRoute,
+  CustomerRequestsRoute: CustomerRequestsRouteWithChildren,
+  CustomerSubscriptionRoute: CustomerSubscriptionRoute,
+  CustomerSupportRoute: CustomerSupportRoute,
+  SalesDashboardRoute: SalesDashboardRoute,
+  SalesRequestsRoute: SalesRequestsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
